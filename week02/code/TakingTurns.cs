@@ -84,5 +84,28 @@
         players = new TakingTurnsQueue();
         players.GetNextPerson();
         // Defect(s) Found:
+
+
+         Console.WriteLine("---------");
+
+        // Test 6: Single Person, Multiple Turns
+        Console.WriteLine("Test 6");
+        players = new TakingTurnsQueue();
+        players.AddPerson("Alice", 3);
+        for (int i = 0; i < 5; i++) // Run more than the assigned turns
+            players.GetNextPerson();
+        // Defect(s) Found: Queue should become empty after Alice's turns are exhausted.
+
+        Console.WriteLine("---------");
+
+        // Test 7: Multiple People, One with Infinite Turns
+        Console.WriteLine("Test 7");
+        players = new TakingTurnsQueue();
+        players.AddPerson("Bob", 2);
+        players.AddPerson("Carol", 0);  // Infinite turns
+        players.AddPerson("David", 1);
+        for (int i = 0; i < 10; i++)  // Run a few cycles
+            players.GetNextPerson();
+        // Defect(s) Found: Carol should be the only one remaining in the queue.
     }
 }
