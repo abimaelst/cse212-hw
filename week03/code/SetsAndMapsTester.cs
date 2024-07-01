@@ -265,25 +265,17 @@ public static class SetsAndMapsTester
         var json = reader.ReadToEnd();
         var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
-        try
-        {
-            var featureCollection = JsonSerializer.Deserialize<FeatureCollection>(json, options);
+        var featureCollection = JsonSerializer.Deserialize<FeatureCollection>(json, options);
 
-            // TODO:
-            // 1. Add code in FeatureCollection.cs to describe the JSON using classes and properties 
-            // on those classes so that the call to Deserialize above works properly.
-            // 2. Add code below to print out each place a earthquake has happened today and its magitude.
-            foreach (var feature in featureCollection.Features)
-            {
-                var properties = feature.Properties;
-                // string formattedMagnitude = properties.Mag.ToString("0.00");
-                Console.WriteLine($"Place: {properties.Place}, Mag: {properties.Mag}");
-            }
-        }
-        catch (JsonException ex)
+        // TODO:
+        // 1. Add code in FeatureCollection.cs to describe the JSON using classes and properties 
+        // on those classes so that the call to Deserialize above works properly.
+        // 2. Add code below to print out each place a earthquake has happened today and its magitude.
+        foreach (var feature in featureCollection.Features)
         {
-            Console.WriteLine($"Error deserializing JSON: {ex.Message}");
+            var properties = feature.Properties;
+            // string formattedMagnitude = properties.Mag.ToString("0.00");
+            Console.WriteLine($"Place: {properties.Place}, Mag: {properties.Mag}");
         }
-
     }
 }
